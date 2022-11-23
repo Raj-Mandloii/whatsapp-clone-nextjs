@@ -3,6 +3,8 @@ import React, { useContext } from 'react'
 import { AccContext } from '../../../context/Provider'
 import {Chat as MessageIcon,MoreVert} from "@mui/icons-material"
 import { HeaderMenu } from './HeaderMenu'
+import { InfoDrawer } from '../../drawer/InfoDrawer'
+import { useState } from 'react'
 
 
 const Component = styled(Box)`
@@ -33,14 +35,16 @@ const Image = styled("img")({
   width:40,
   borderRadius: 50
 })
-export const Header = () => {
 
+export const Header = () => {
+  const [openDrawer,setOpenDrawer] = useState(false)
   const { acc } = useContext(AccContext);
   return (
     <>
       <Component>
         
-        <Image src={acc.picture} alt="Pic" />
+        <Image src={acc.picture} alt="Pic" onClick={()=>
+          setOpenDrawer(true)}/>
         <Wrapper>
         <MessageIcon/>
         <HeaderMenu/>
@@ -48,6 +52,7 @@ export const Header = () => {
         
       
       </Component>
+      <InfoDrawer open={openDrawer} setOpen={setOpenDrawer}/>
     </>
   )
 }

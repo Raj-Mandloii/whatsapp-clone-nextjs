@@ -32,7 +32,7 @@ export const HeaderMenu = () => {
                 anchorEl={open}
                 open={open}
                 onClose={handleClose}
-                getContentAnchorE1={null}
+                getcontentanchore1={null}
                anchorOrigin={{
                 vertical: "bottom",
                 horizontal:"center"
