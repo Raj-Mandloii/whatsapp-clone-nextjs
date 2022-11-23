@@ -2,6 +2,7 @@ import { Box ,styled} from '@mui/material'
 import React, { useContext } from 'react'
 import { AccContext } from '../../../context/Provider'
 import {Chat as MessageIcon,MoreVert} from "@mui/icons-material"
+import { HeaderMenu } from './HeaderMenu'
 
 
 const Component = styled(Box)`
@@ -42,7 +43,7 @@ export const Header = () => {
         <Image src={acc.picture} alt="Pic" />
         <Wrapper>
         <MessageIcon/>
-        <MoreVert/>
+        <HeaderMenu/>
         </Wrapper>
         
       
