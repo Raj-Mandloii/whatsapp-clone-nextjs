@@ -1,6 +1,10 @@
 import React from 'react'
 import { Dialog, Typography, Box, List, ListItem, styled } from '@mui/material'
-import { qrCodeImage } from '../constants/links'
+import { qrCodeImage } from '../constants/links';
+import { GoogleLogin } from '@react-oauth/google';
+import jwt_decode from "jwt-decode";
+import { useContext } from 'react';
+import { AccContext } from '../context/Provider';
 const style = {
     height: "96%",
     marginTop: "12%",
@@ -40,8 +44,20 @@ const ListStyle = styled(List)`
  }
 `
 export const LoginDialogue = () => {
+    const {setAcc} = useContext(AccContext)
+
+    const loginSuccess = (res)=>{
+        const decoded = jwt_decode(res.credential);
+        setAcc(decoded)
+        console.log("Successfull",decoded);
+    }
+
+    const loginError = (res) =>{
+        console.log("Failed",res)
+
+    }
     return (
-        <Dialog PaperProps={{ sx: style }} open={true} >
+        <Dialog PaperProps={{ sx: style }} open={true} hideBackdrop>
             <Component>
                 <Container>
                     <Title>To use WhatsApp on your computer:</Title>
@@ -52,8 +68,15 @@ export const LoginDialogue = () => {
                         <ListItem>4. Point your phone to this screen to capture the code</ListItem>
                     </ListStyle>
                 </Container>
-                <Box>
-                    <QRCode src={qrCodeImage} alt="" />
+                <Box style={{position:"relative"}}>
+                    <QRCode src={qrCodeImage} alt="QR Code" />
+                    <Box style={{position:"absolute",top:"50%",transform:"traslate(25%)"}}>
+
+                    <GoogleLogin onSuccess={loginSuccess}
+                    onError={loginError}
+                    
+                    />
+                    </Box>
                 </Box>
             </Component>
         </Dialog>
