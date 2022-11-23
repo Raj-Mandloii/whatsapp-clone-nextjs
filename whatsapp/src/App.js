@@ -1,10 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { Messanger } from './components/Messanger';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello</h1>
+    <div>
+     <Messanger/>
     </div>
   );
 }
