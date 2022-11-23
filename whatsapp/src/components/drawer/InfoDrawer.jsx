@@ -1,6 +1,7 @@
 import React from 'react'
 import {Box, Drawer, Typography,styled} from "@mui/material"
 import { ArrowBack} from "@mui/icons-material"
+import { Profile } from './Profile'
 const drawer = {
   left: 20,
   top: 17,
@@ -38,7 +39,7 @@ export const InfoDrawer = ({open,setOpen}) => {
           <Typography>Profile</Typography>
         </Header>
         <Component>
-
+          <Profile/>
         </Component>
     </Drawer>
 

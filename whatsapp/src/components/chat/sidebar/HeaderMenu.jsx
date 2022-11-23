@@ -14,7 +14,7 @@ const MenuOption = styled(MenuItem)`
 
 `
 
-export const HeaderMenu = () => {
+export const HeaderMenu = (props) => {
 
     const [open,setOpen] = useState(null);
 
@@ -42,7 +42,11 @@ export const HeaderMenu = () => {
                 horizontal:"right"
                }}
             >
-                <MenuOption onClick={handleClose}>Profile</MenuOption>
+                <MenuOption onClick={()=>{
+                    handleClose();
+                    props.setOpen(true)
+                    
+                }}>Profile</MenuOption>
                 {/* <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={handleClose}>Logout</MenuItem> */}
             </Menu>

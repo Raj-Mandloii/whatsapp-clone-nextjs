@@ -47,7 +47,7 @@ export const Header = () => {
           setOpenDrawer(true)}/>
         <Wrapper>
         <MessageIcon/>
-        <HeaderMenu/>
+        <HeaderMenu open={openDrawer} setOpen={setOpenDrawer}/>
         </Wrapper>
         
       
