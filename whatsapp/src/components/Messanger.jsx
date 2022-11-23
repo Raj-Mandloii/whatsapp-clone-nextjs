@@ -6,6 +6,12 @@ import { AccContext } from '../context/Provider'
 import { ChatDialog } from './chat/ChatDialog'
 
 const Header = styled(AppBar)`
+height:125px;
+background-color:#00A884;
+box-shodow: none;`
+
+
+const LoginHeader = styled(AppBar)`
 height:220px;
 background-color:#00a884;
 box-shodow: none;`
@@ -18,15 +24,25 @@ export const Messanger = () => {
     const { acc } = useContext(AccContext)
     return (
         <Component>
-            {acc ? <ChatDialog /> : <>
+            {acc ?
+                <>
+                    <Header>
+                        <Toolbar>
 
-                <Header>
-                    <Toolbar>
-                        <LoginDialogue />
-                    </Toolbar>
-                </Header>
+                        </Toolbar>
+                    </Header>
+                    <ChatDialog />
+                </>
 
-            </>}
+                : <>
+
+                    <LoginHeader>
+                        <Toolbar>
+                        </Toolbar>
+                    </LoginHeader>
+                    <LoginDialogue />
+
+                </>}
         </Component>
     )
 }
