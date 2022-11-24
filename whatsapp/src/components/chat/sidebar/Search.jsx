@@ -39,14 +39,19 @@ color: #919191;
 `
 
 
-export const Search = () => {
+export const Search = ({ setText }) => {
+
   return (
     <Component>
       <Wrapper>
         <Icon>
           <SeachIcon />
         </Icon>
-        <InputField />
+        <InputField placeholder='Search or start a new chat'
+          onChange={(e) => {
+            setText(e.target.value)
+          }}
+        />
       </Wrapper>
     </Component>
   )

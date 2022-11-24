@@ -2,6 +2,7 @@
 
 
 const express = require("express");
+const { newConversation } = require("../Controller/conversation");
 const { addUser ,getUser} = require("../Controller/user_controller");
 
 const userController = express.Router();
@@ -11,6 +12,7 @@ const userController = express.Router();
 
 userController.post("/add",addUser)
 userController.get("/user",getUser)
+userController.post('/conversation/add',newConversation)
 
 
 

@@ -17,17 +17,18 @@ const CustomDivider = styled(Divider)`
     opacity : 0.6
 
 `
-export const Conversation = () => {
+export const Conversation = ({text}) => {
     const [data, setData] = useState([])
     const {acc} = useContext(AccContext)
-    
     useEffect(() => {
         const fetchData = async () => {
             let res =  await getUser();
-            setData(res)
+            const filtered = res.filter(user=> user.name.toLowerCase().includes(text)
+            )
+            setData(filtered)
         }
         fetchData();
-    }, [])
+    }, [text])
     return (
         <Component>
             {data.map((el)=> (

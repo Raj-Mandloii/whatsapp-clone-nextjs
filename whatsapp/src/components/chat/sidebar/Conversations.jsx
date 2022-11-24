@@ -19,10 +19,12 @@ const Image = styled("img")({
 
 })
 export const Conversations = ({ user }) => {
-    const {setPerson, account} = useContext(AccContext)
+    const {setPerson, acc} = useContext(AccContext);
+    
      const getUser = async () =>{
-        setPerson(user);
-        await setConversation({senderId: account.sub,receiverId: user.sub})
+        console.log(acc,user)
+        await setPerson(user);
+        await setConversation({senderId: acc.sub,receiverId: user.sub})
     }
 
     return (

@@ -1,16 +1,18 @@
 import { Box ,styled} from '@mui/material'
 import React from 'react'
+import { useState } from 'react';
 import { Conversation } from './Conversation';
 import { Header } from './Header';
 import { Search } from './Search';
 
 
 export const Sidebar = () => {
+  const [text,setText] = useState('')
   return (
     <Box>
         <Header/>
-        <Search/>
-        <Conversation/>
+        <Search  setText={setText}/>
+        <Conversation text={text}/>
     </Box>
   )
 }
