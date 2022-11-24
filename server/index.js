@@ -1,10 +1,14 @@
 
 const express = require("express")
 const {connection} = require("./config/db")
-
-
+const {userController} = require("./routes/user.routes.js")
+const cors = require('cors');
+const parser = require("body-parser")
 const app = express();
-
+app.use(cors())
+app.use(parser.json({extended: true}));
+app.use(parser.urlencoded({extended: true}));
+app.use("/",userController)
 
 
 
