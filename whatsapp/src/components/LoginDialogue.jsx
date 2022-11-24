@@ -5,6 +5,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 import { useContext } from 'react';
 import { AccContext } from '../context/Provider';
+import { addUser } from '../services/api';
 const style = {
     height: "96%",
     marginTop: "12%",
@@ -22,8 +23,8 @@ const Container = styled(Box)`
     padding:56px 0px 56px 56px
 `
 const QRCode = styled("img")({
-    height:264,
-    width:264,
+    height: 264,
+    width: 264,
     margin: "50px 0px 0px 50px"
 })
 const Title = styled(Typography)`
@@ -44,16 +45,17 @@ const ListStyle = styled(List)`
  }
 `
 export const LoginDialogue = () => {
-    const {setAcc} = useContext(AccContext)
+    const { setAcc } = useContext(AccContext)
 
-    const loginSuccess = (res)=>{
+    const loginSuccess = async (res) => {
         const decoded = jwt_decode(res.credential);
-        setAcc(decoded)
-        console.log("Successfull",decoded);
+        setAcc(decoded);
+        await addUser(decoded)
+
     }
 
-    const loginError = (res) =>{
-        console.log("Failed",res)
+    const loginError = (res) => {
+        console.log("Failed", res)
 
     }
     return (
@@ -68,14 +70,14 @@ export const LoginDialogue = () => {
                         <ListItem>4. Point your phone to this screen to capture the code</ListItem>
                     </ListStyle>
                 </Container>
-                <Box style={{position:"relative"}}>
+                <Box style={{ position: "relative" }}>
                     <QRCode src={qrCodeImage} alt="QR Code" />
-                    <Box style={{position:"absolute",top:"50%",transform:"traslate(25%)"}}>
+                    <Box style={{ position: "absolute", top: "50%", transform: "traslate(25%)" }}>
 
-                    <GoogleLogin onSuccess={loginSuccess}
-                    onError={loginError}
-                    
-                    />
+                        <GoogleLogin onSuccess={loginSuccess}
+                            onError={loginError}
+
+                        />
                     </Box>
                 </Box>
             </Component>
