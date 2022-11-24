@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { Box, Dialog } from '@mui/material'
-import React from 'react'
+import React, { useContext } from 'react'
+import { AccContext } from '../../context/Provider'
 import { ChatBox } from './ChatBox'
 import { EmptyChat } from './EmptyChat'
 import { Sidebar } from './sidebar/Sidebar'
@@ -31,7 +32,8 @@ const RightComponent = styled(Box)`
     height:100%;
     border-left: 1px solid rgba(0,0,0,0.14)
 `
-export const ChatDialog = () => {
+export const ChatDialog = ({}) => {
+    const { person } = useContext(AccContext)
     return (
         <Dialog
             minwidth={"md"}
@@ -43,8 +45,13 @@ export const ChatDialog = () => {
                     <Sidebar />
                 </LeftComponent>
                 <RightComponent>
-                    {/* <EmptyChat /> */}
-                    <ChatBox/>
+                    {Object.keys(person).length ?
+                        <ChatBox /> :
+
+                        <EmptyChat />
+
+
+                    }
                 </RightComponent>
             </Component>
         </Dialog>

@@ -3,12 +3,12 @@ import { createContext } from "react";
 
 export const AccContext = createContext(null);
 
-export const AccProvider = ({children}) => {
+export const AccProvider = ({ children }) => {
     const [acc, setAcc] = useState();
-    console.log("ACC INFO :::::::: ",acc)
+    const [person, setPerson] = useState({})
     return (
         <AccContext.Provider value={{
-            acc, setAcc
+            acc, setAcc, person, setPerson
         }}>
             {children}
         </AccContext.Provider>

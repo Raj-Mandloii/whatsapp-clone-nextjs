@@ -38,14 +38,14 @@ const Status = styled(Typography)`
     color: rgb(0, 0, 0, 0.6);
     margin-left: 12px !important;
 `;
-export const ChatHeader = () => {
+export const ChatHeader = ({ person }) => {
     return (
        <Header>
-        <Image src={defaultProfilePicture} alt="Pic" />
+        <Image src={person.picture} alt="Pic" />
 
         <Box>
-            <Name>Name</Name>
-            <Status>Last Seen</Status>
+            <Name>{person.name}</Name>
+            <Status>Offline</Status>
         </Box>
         <RightContainer>
             <Search/>
