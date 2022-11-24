@@ -10,6 +10,16 @@ export const addUser = async (data) => {
         await axios.post(`${URL}add`, data)
 
     } catch (e) {
-        console.log("ERROR WHILE LOGIN",e)
+        console.log("ERROR WHILE LOGIN :",e)
+    }
+}
+
+
+export const getUser = async () => {
+    try {
+        let response = await axios.get(`${URL}user`);
+        return response.data
+    } catch (error) {
+        console.log('Error while calling getUsers API ', error);
     }
 }

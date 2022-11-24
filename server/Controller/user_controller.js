@@ -28,6 +28,20 @@ const addUser = async (req, res) => {
 
 }
 
+ const getUser = async (req, res) => {
+
+    try {
+       const users =  await UserModel.find({});
+       return res.status(200).json(users)
+    } catch (e) {
+
+        return res.status(500).json(e.message)
+
+
+    }
+
+
+}
 module.exports = {
-    addUser
+    addUser,getUser
 }
