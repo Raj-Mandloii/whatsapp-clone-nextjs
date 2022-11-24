@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { Box, Dialog } from '@mui/material'
 import React from 'react'
+import { ChatBox } from './ChatBox'
 import { EmptyChat } from './EmptyChat'
 import { Sidebar } from './sidebar/Sidebar'
 
@@ -42,7 +43,8 @@ export const ChatDialog = () => {
                     <Sidebar />
                 </LeftComponent>
                 <RightComponent>
-                    <EmptyChat />
+                    {/* <EmptyChat /> */}
+                    <ChatBox/>
                 </RightComponent>
             </Component>
         </Dialog>
