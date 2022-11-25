@@ -22,7 +22,7 @@ export const Conversations = ({ user }) => {
     const {setPerson, acc} = useContext(AccContext);
     
      const getUser = async () =>{
-        console.log(acc,user)
+       
         await setPerson(user);
         await setConversation({senderId: acc.sub,receiverId: user.sub})
     }
