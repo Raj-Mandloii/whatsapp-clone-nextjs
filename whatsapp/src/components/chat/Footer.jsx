@@ -1,6 +1,7 @@
-import { Box, InputBase,styled } from '@mui/material'
+import { Box, InputBase, styled } from '@mui/material'
 import React from 'react'
-import {EmojiEmotionsOutlined,AttachFile,Mic} from "@mui/icons-material"
+import { EmojiEmotionsOutlined, AttachFile, Mic } from "@mui/icons-material"
+import { useState } from 'react';
 
 
 const Component = styled(Box)`
@@ -32,15 +33,21 @@ const InputField = styled(InputBase)`
   font-size: 14px;
 
 `
-export const Footer = () => {
+export const Footer = ({ sendText ,setValue, value}) => {
+
   return (
     <Component>
-      <EmojiEmotionsOutlined/>
-      <Clip/>
+      <EmojiEmotionsOutlined />
+      <Clip />
       <Search>
-        <InputField placeholder='Type a message'/>
+        <InputField 
+        value={value}
+        placeholder='Type a message'
+          onChange={(e) => setValue(e.target.value)}
+          onKeyPress={(e) => sendText(e)}
+        />
       </Search>
-      <Mic/>
+      <Mic />
     </Component>
   )
 }
