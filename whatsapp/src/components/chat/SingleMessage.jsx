@@ -3,7 +3,7 @@ import React from 'react'
 import { useContext } from 'react'
 import { AccContext } from '../../context/Provider'
 import { formateDate } from '../../Utils/common-utils'
-
+import GetAppIcon from "@mui/icons-material/GetApp"
 const Own = styled(Box)`
   background: #dcf8c6;
   max-width: 60%;
@@ -43,8 +43,9 @@ export const SingleMessage = ({ message }) => {
     <>
       {acc.sub == message.senderId ?
         <Own>
-          <Text>{message.text}</Text>
-          <Time>{formateDate(message.createdAt)}</Time>
+          {message.type == "file" ? <ImageMessage message={message} />
+            : <TextMessage message={message} />}
+
         </Own> :
         <Received>
           <Text>{message.text}</Text>
@@ -52,6 +53,37 @@ export const SingleMessage = ({ message }) => {
         </Received>
 
       }
+    </>
+  )
+}
+const ImageMessage = ({ message }) => {
+  return (
+    <Box style={{ position: "relative" }}>
+      {
+        message?.text?.includes('.pdf') ?
+          <Box>
+
+          </Box> :
+          <img style={{ width: '300px', height: '100%' }} src={message.text} alt={message.text} />
+      }
+      <Time style={{ position: "absolute", bottom: 0, right: 0 }}>
+        <GetAppIcon style={{
+          margin: 10, border: "1px solid gray", borderRadius: "50%"
+
+        }} fontSize='small'/>
+        <Time>{formateDate(message.createdAt)}</Time>
+
+      </Time>
+    </Box>
+  )
+}
+
+
+const TextMessage = ({ message }) => {
+  return (
+    <>
+      <Text>{message.text}</Text>
+      <Time>{formateDate(message.createdAt)}</Time>
     </>
   )
 }

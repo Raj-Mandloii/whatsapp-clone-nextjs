@@ -35,9 +35,10 @@ const InputField = styled(InputBase)`
   font-size: 14px;
 
 `
-export const Footer = ({ sendText, setValue, value, file, setFile }) => {
+export const Footer = ({ sendText, setValue, value, file, setFile,setImage }) => {
+ 
   const onFileChange = (e) => {
-    console.log(e.target.value[0])
+    
     setValue(e.target.files[0].name);
     setFile(e.target.files[0]);
   }
@@ -49,7 +50,9 @@ export const Footer = ({ sendText, setValue, value, file, setFile }) => {
         data.append("name", file.name);
         data.append("file", file);
 
-        await uploadFile(data)
+      let res =  await uploadFile(data)
+      
+      setImage(res)
       }
     }
     getImage()

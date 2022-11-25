@@ -21,24 +21,39 @@ padding: 1px 80px;
 `
 export const Messages = ({ person, conversation }) => {
     const [value, setValue] = useState("")
-    const [message,setMessages] = useState([]);
-    const [messageFlag,setMessageFlag] = useState(false)
-    const [file,setFile] = useState('')
-
+    const [message, setMessages] = useState([]);
+    const [messageFlag, setMessageFlag] = useState(false)
+    const [file, setFile] = useState('')
+    const [image,setImage] = useState('')
+ 
     const { acc } = useContext(AccContext)
     const sendText = async (e) => {
         const code = e.keycode || e.which;
         if (code == 13) {
-            let msg = {
-                senderId: acc.sub,
-                receiverId: person.sub,
-                conversationId: conversation._id,
-                type: "text",
-                text: value,
+            let msg = {}
+            if (!file) {
 
+
+                 msg = {
+                    senderId: acc.sub,
+                    receiverId: person.sub,
+                    conversationId: conversation._id,
+                    type: "text",
+                    text: value,
+                }
+            } else {
+                 msg = {
+                    senderId: acc.sub,
+                    receiverId: person.sub,
+                    conversationId: conversation._id,
+                    type: "file",
+                    text: image,
+                }
             }
             await newMessage(msg)
             setValue("");
+            setFile('')
+            setImage('')
             setMessageFlag(p => !p)
         }
     }
@@ -49,22 +64,23 @@ export const Messages = ({ person, conversation }) => {
         }
         // because calling one undefined call or dont have any messages. 
         conversation._id && getMessageDetails();
-    },[person._id,conversation._id,messageFlag])
+    }, [person._id, conversation._id, messageFlag])
     return (
         <Wrapper>
             <Component>
-                {message && message.map(el =>(
+                {message && message.map(el => (
                     <Container>
-                   <SingleMessage message={el} key={el._id}/> 
+                        <SingleMessage message={el} key={el._id} />
                     </Container>
                 ))}
             </Component>
-            <Footer 
-            sendText={sendText}
+            <Footer
+                sendText={sendText}
                 setValue={setValue}
                 value={value}
                 file={file}
                 setFile={setFile}
+                setImage={setImage}
             />
         </Wrapper>
     )
