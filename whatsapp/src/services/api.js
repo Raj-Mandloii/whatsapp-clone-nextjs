@@ -64,3 +64,12 @@ export const getMessage = async (id) => {
         console.log('Error : get message API ', error.message);
     }
 }
+
+export const uploadFile = async (data) => {
+    try {
+        let response = await axios.post(`${URL}file/upload`, data);
+        return response.data
+    } catch (error) {
+        console.log('Error while setting new message API ', error.message);
+    }
+}

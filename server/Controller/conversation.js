@@ -25,11 +25,11 @@ const newConversation = async (req, res) => {
 
 }
 const getConversation = async (req, res) => {
-    console.log("REQUEST ::::::",req.body)
+    // console.log("REQUEST ::::::",req.body)
     try {
         
         const conversation = await ConversationModel.findOne({ members: { $all: [ req.body.senderId, req.body.receiverId] }});
-        console.log("Server details",conversation)
+        // console.log("Server details",conversation)
         res.status(200).json(conversation);
         
     } catch (e) {

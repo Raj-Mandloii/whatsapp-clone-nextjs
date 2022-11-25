@@ -34,7 +34,7 @@ export const Conversation = ({text}) => {
             {data.map((el)=> (
                 acc.sub !== el.sub &&
                 <>
-                <Conversations user={el}/>
+                <Conversations user={el} key={el.id}/>
                 <CustomDivider/>
                 </>
             ))}
