@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* overoll css of scoll bar */
+::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+  
+}
+
+/* the entire track of scroll */
+::-webkit-scrollbar-track {
+  background-color: hsla( 0, 0, 100%, .1);
+}
+/* The stripe we drag to schroll  */
+::-webkit-scrollbar-thumb{
+  background-color: rgba(0,0,0,0.2);
+}

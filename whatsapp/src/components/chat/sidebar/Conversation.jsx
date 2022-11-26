@@ -10,7 +10,11 @@ import { Conversations } from './Conversations'
 const Component = styled(Box)`
     height : 81vh;
     overflow: scroll;
-`
+    `
+    //  to hide the scroll bar 
+    // ::-webkit-scrollbar {
+    //     display: none;
+    // }
 const CustomDivider = styled(Divider)`
     margin: 0 0 0 80px;
     background-color: #e9edef;

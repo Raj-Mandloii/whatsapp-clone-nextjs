@@ -1,5 +1,5 @@
 import { Box, styled } from '@mui/material'
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect,useRef } from 'react'
 import { Footer } from './Footer'
 import { AccContext } from "../../context/Provider"
 import { getMessage, newMessage } from '../../services/api'
@@ -12,10 +12,18 @@ const Wrapper = styled(Box)`
 
 
 `
+//.example::-webkit-scrollbar {
+   // display: none;
+//}
+
 const Component = styled(Box)`
     height : 80vh;
-    overflow-y: schroll;
+    overflow-y: scroll;
+     
 `
+// ::-webkit-scrollbar {
+//     display: none;
+// }
 const Container = styled(Box)`
 padding: 1px 80px;
 `
@@ -25,7 +33,7 @@ export const Messages = ({ person, conversation }) => {
     const [messageFlag, setMessageFlag] = useState(false)
     const [file, setFile] = useState('')
     const [image,setImage] = useState('')
- 
+    const scrollRef = useRef();
     const { acc } = useContext(AccContext)
     const sendText = async (e) => {
         const code = e.keycode || e.which;
@@ -65,11 +73,15 @@ export const Messages = ({ person, conversation }) => {
         // because calling one undefined call or dont have any messages. 
         conversation._id && getMessageDetails();
     }, [person._id, conversation._id, messageFlag])
+
+    useEffect(()=>{
+        scrollRef.current?.scrollIntoView({transition: "smooth"})
+    },[message])
     return (
         <Wrapper>
             <Component>
                 {message && message.map(el => (
-                    <Container>
+                    <Container ref={scrollRef}>
                         <SingleMessage message={el} key={el._id} />
                     </Container>
                 ))}

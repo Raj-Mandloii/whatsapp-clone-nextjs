@@ -2,8 +2,9 @@ import { Box, Typography, styled } from '@mui/material'
 import React from 'react'
 import { useContext } from 'react'
 import { AccContext } from '../../context/Provider'
-import { formateDate } from '../../Utils/common-utils'
-import GetAppIcon from "@mui/icons-material/GetApp"
+import { formateDate,downloadMedia } from '../../Utils/common-utils'
+import GetAppIcon from "@mui/icons-material/GetApp";
+import { iconPDF } from "../../constants/links"
 const Own = styled(Box)`
   background: #dcf8c6;
   max-width: 60%;
@@ -48,8 +49,8 @@ export const SingleMessage = ({ message }) => {
 
         </Own> :
         <Received>
-          <Text>{message.text}</Text>
-          <Time>{formateDate(message.createdAt)}</Time>
+          {message.type == "file" ? <ImageMessage message={message} />
+            : <TextMessage message={message} />}
         </Received>
 
       }
@@ -61,16 +62,19 @@ const ImageMessage = ({ message }) => {
     <Box style={{ position: "relative" }}>
       {
         message?.text?.includes('.pdf') ?
-          <Box>
-
+          <Box display={'flex'}>
+            <img src={iconPDF} alt="pdf" style={{ width: '80px' }} />
+            <Typography fontSize={"14px"}>{message.text.split("/").pop()}</Typography>
           </Box> :
           <img style={{ width: '300px', height: '100%' }} src={message.text} alt={message.text} />
       }
       <Time style={{ position: "absolute", bottom: 0, right: 0 }}>
-        <GetAppIcon style={{
+        <GetAppIcon 
+        onClick={(e)=> downloadMedia(e,message.text)}
+        style={{
           margin: 10, border: "1px solid gray", borderRadius: "50%"
 
-        }} fontSize='small'/>
+        }} fontSize='small' />
         <Time>{formateDate(message.createdAt)}</Time>
 
       </Time>
