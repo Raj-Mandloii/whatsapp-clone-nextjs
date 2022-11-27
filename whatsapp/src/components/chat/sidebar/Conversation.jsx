@@ -30,6 +30,7 @@ export const Conversation = ({ text }) => {
             const filtered = res.filter(user => user.name.toLowerCase().includes(text)
             )
             setData(filtered)
+            console.log("List of users ::::::::::::",filtered)
         }
         fetchData();
     }, [text])
@@ -42,7 +43,7 @@ export const Conversation = ({ text }) => {
     }, [acc])
     return (
         <Component>
-            {data.map((el) => (
+            {data && data.map((el) => (
                 acc.sub !== el.sub &&
                 <>
                     <Conversations user={el} key={el.id} />

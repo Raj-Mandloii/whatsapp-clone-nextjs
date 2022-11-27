@@ -72,9 +72,9 @@ export const LoginDialogue = () => {
                 </Container>
                 <Box style={{ position: "relative" }}>
                     <QRCode src={qrCodeImage} alt="QR Code" />
-                    <Box style={{ position: "absolute", top: "50%", transform: "traslate(25%)" }}>
+                    <Box style={{ position: "absolute", top: "50%",right:"22%", transform: "translate(25%)" }}>
 
-                        <GoogleLogin onSuccess={loginSuccess}
+                        <GoogleLogin width='250px' auto_select  onSuccess={loginSuccess}
                             onError={loginError}
 
                         />

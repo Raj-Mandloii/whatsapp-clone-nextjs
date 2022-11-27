@@ -88,6 +88,7 @@ export const Messages = ({ person, conversation }) => {
         const getMessageDetails = async () => {
             let data = await getMessage(conversation._id);
             setMessages(data)
+          
         }
         // because calling one undefined call or dont have any messages. 
         conversation._id && getMessageDetails();
@@ -106,7 +107,7 @@ export const Messages = ({ person, conversation }) => {
             <Component>
                 {message && message.map(el => (
                     <Container ref={scrollRef}>
-                        <SingleMessage message={el} key={el._id} />
+                        <SingleMessage message={el} key={el.senderId} />
                     </Container>
                 ))}
             </Component>
