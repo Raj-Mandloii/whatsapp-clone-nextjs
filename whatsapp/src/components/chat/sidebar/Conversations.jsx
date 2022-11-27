@@ -2,6 +2,7 @@ import { Box, Typography, styled } from '@mui/material'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useContext } from 'react'
+import { emptyProfilePicture } from '../../../constants/links'
 import { AccContext } from '../../../context/Provider'
 import { getConversation, setConversation } from '../../../services/api'
 import { formateDate } from '../../../Utils/common-utils'
@@ -52,11 +53,11 @@ export const Conversations = ({ user }) => {
         await setPerson(user);
         await setConversation({ senderId: acc.sub, receiverId: user.sub })
     }
-
+    const url = user.picture || emptyProfilePicture;
     return (
         <Component onClick={() => getUser()}>
             <Box>
-                <Image src={user.picture} alt="Pic" />
+                <Image src={url} alt="Pic" />
             </Box>
             <Box style={{width:'100%'}}>
                 <Container>

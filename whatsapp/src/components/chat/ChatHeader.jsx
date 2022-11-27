@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material'
 import React from 'react'
 import { useContext } from 'react'
 
-import { defaultProfilePicture } from '../../constants/links'
+import { defaultProfilePicture, emptyProfilePicture } from '../../constants/links'
 import { AccContext } from '../../context/Provider'
 
 const Header = styled(Box)`
@@ -14,7 +14,7 @@ const Header = styled(Box)`
     padding: 8px 16px;
     align-items: center;
 `;
-
+    
 const Image = styled('img')({
     width: 40,
     height: 40,
@@ -40,11 +40,14 @@ const Status = styled(Typography)`
     color: rgb(0, 0, 0, 0.6);
     margin-left: 12px !important;
 `;
+
+
 export const ChatHeader = ({ person }) => {
     const {activeUsers} = useContext(AccContext)
+    const url = person.picture || emptyProfilePicture;
     return (
         <Header>
-            <Image src={person.picture} alt="Pic" />
+            <Image src={url} alt="Pic" />
 
             <Box>
                 <Name>{person.name}</Name>

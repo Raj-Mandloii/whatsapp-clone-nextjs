@@ -1,6 +1,7 @@
 import { Box, styled, Typography } from '@mui/material'
 import React from 'react'
 import { useContext } from 'react'
+import { emptyProfilePicture } from '../../constants/links'
 import { AccContext } from '../../context/Provider'
 
 
@@ -46,12 +47,13 @@ const Description = styled(Box)`
 `
 export const Profile = () => {
 
-
+    
     const { acc } = useContext(AccContext)
+    const url = acc.picture || emptyProfilePicture;
     return (
         <>
             <ImageComp>
-                <Image src={acc.picture} alt="" />
+                <Image src={url} alt="" />
             </ImageComp>
             <BoxWrapper>
                 <Typography>Your name</Typography>
