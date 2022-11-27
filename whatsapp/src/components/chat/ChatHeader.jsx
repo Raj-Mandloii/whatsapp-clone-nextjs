@@ -2,8 +2,10 @@ import styled from '@emotion/styled'
 import { MoreVert, Search } from '@mui/icons-material'
 import { Box, Typography } from '@mui/material'
 import React from 'react'
+import { useContext } from 'react'
 
 import { defaultProfilePicture } from '../../constants/links'
+import { AccContext } from '../../context/Provider'
 
 const Header = styled(Box)`
     height: 44px;
@@ -12,7 +14,7 @@ const Header = styled(Box)`
     padding: 8px 16px;
     align-items: center;
 `;
-    
+
 const Image = styled('img')({
     width: 40,
     height: 40,
@@ -39,19 +41,20 @@ const Status = styled(Typography)`
     margin-left: 12px !important;
 `;
 export const ChatHeader = ({ person }) => {
+    const {activeUsers} = useContext(AccContext)
     return (
-       <Header>
-        <Image src={person.picture} alt="Pic" />
+        <Header>
+            <Image src={person.picture} alt="Pic" />
 
-        <Box>
-            <Name>{person.name}</Name>
-            <Status>Offline</Status>
-        </Box>
-        <RightContainer>
-            <Search/>
-            <MoreVert/>
-        </RightContainer>
+            <Box>
+                <Name>{person.name}</Name>
+                <Status>{activeUsers?.find(user => user.sub == person.sub)? "Online":""}</Status>
+            </Box>
+            <RightContainer>
+                <Search />
+                <MoreVert />
+            </RightContainer>
 
-       </Header>
+        </Header>
     )
 }
