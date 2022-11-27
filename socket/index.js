@@ -20,6 +20,9 @@ const getUser = (userId) => {
     return users.find(user => user.sub === userId)
 }
 
+const removeUser = (socketId) => {
+    users = users.filter(user => user.socketId !== socketId);
+}
 // connecting to IO
 io.on("connection", (socket) => {
     console.log("User Connection via Socket")
@@ -34,6 +37,13 @@ io.on("connection", (socket) => {
         console.log("USER :::::::::",user)
         io.to(user.socketId).emit("getMessage",data)
 
+    })
+
+      //disconnect
+      socket.on('disconnect', () => {
+        console.log('user disconnected');
+        removeUser(socket.id);
+        io.emit('getUsers', users);
     })
 })
 
