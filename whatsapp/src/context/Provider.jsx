@@ -10,7 +10,7 @@ export const AccProvider = ({ children }) => {
     const [messageFlag,setMessageFlag] = useState(false)
     const socket = useRef();
     useEffect(() => {
-        socket.current = io("https://whatsapp-clone-reactjs-production.up.railway.app/")
+        socket.current = io("https://server-for-whatsapp001.onrender.com/")
 
 
     }, [])
