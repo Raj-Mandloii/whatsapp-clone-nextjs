@@ -38,12 +38,14 @@ const Text = styled(Box)`
  
 `
 export const Conversations = ({ user }) => {
+    
     const { setPerson, acc, messageFlag } = useContext(AccContext);
     const [message, setMessage] = useState({});
     useEffect(() => {
         const getConversationDetails = async () => {
             const data = await getConversation({ senderId: acc.sub, receiverId: user.sub })
-            setMessage({ text: data?.message })
+            setMessage({ text: data?.message,createdAt: data?.updatedAt })
+           
         }
         getConversationDetails()
     }, [messageFlag])
@@ -63,7 +65,7 @@ export const Conversations = ({ user }) => {
                 <Container>
                     <Typography>{user.name}</Typography>
                     {message?.text &&
-                        <TimeStamp>{formateDate(message?.timestamp)}</TimeStamp>}
+                        <TimeStamp>{formateDate(message?.createdAt)}</TimeStamp>}
                 </Container>
                 <Box>
                     <Text>{message?.text?.includes('localhost') ? "media" : message.text}</Text>

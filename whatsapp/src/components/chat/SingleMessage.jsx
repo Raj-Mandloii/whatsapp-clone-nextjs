@@ -39,6 +39,7 @@ const Text = styled(Typography)`
     padding: 0 25px 0 5px
 `
 export const SingleMessage = ({ message }) => {
+  
   const { acc } = useContext(AccContext)
   return (
     <>
@@ -58,6 +59,7 @@ export const SingleMessage = ({ message }) => {
   )
 }
 const ImageMessage = ({ message }) => {
+ 
   return (
     <Box style={{ position: "relative" }}>
       {
