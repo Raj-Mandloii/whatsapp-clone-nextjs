@@ -31,7 +31,7 @@ padding: 1px 80px;
 export const Messages = ({ person, conversation }) => {
     const [value, setValue] = useState("")
     const [message, setMessages] = useState([]);
-    
+
     // we put this is context to reuse it at multiple places.
 
     // const [messageFlag, setMessageFlag] = useState(false)
@@ -39,7 +39,7 @@ export const Messages = ({ person, conversation }) => {
     const [image, setImage] = useState('')
     const scrollRef = useRef();
     const [incomingMessage, setIncomingMessage] = useState(null)
-    const { acc, socket,messageFlag, setMessageFlag } = useContext(AccContext);
+    const { acc, socket, messageFlag, setMessageFlag } = useContext(AccContext);
 
     useEffect(() => {
         socket.current.on("getMessage", data => {
@@ -88,19 +88,19 @@ export const Messages = ({ person, conversation }) => {
         const getMessageDetails = async () => {
             let data = await getMessage(conversation._id);
             setMessages(data)
-          
+
         }
         // because calling one undefined call or dont have any messages. 
-        conversation._id && getMessageDetails();
-    }, [person._id, conversation._id, messageFlag])
+        conversation?._id && getMessageDetails();
+    }, [person?._id, conversation?._id, messageFlag])
 
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ transition: "smooth" })
     }, [message]);
 
     useEffect(() => {
-        incomingMessage && conversation?.members?.includes(incomingMessage.senderId) && 
-        setMessages(prev => [...prev, incomingMessage] )
+        incomingMessage && conversation?.members?.includes(incomingMessage.senderId) &&
+            setMessages(prev => [...prev, incomingMessage])
     }, [incomingMessage, conversation])
     return (
         <Wrapper>

@@ -5,8 +5,8 @@ require("dotenv").config()
 
 const PORT = process.env.PORT || 9000 
 const io = new Server(PORT, {
-    cors: {
-        origin: "https://whats-app-clone-reactjs.netlify.app"
+    cors: { 
+        origin: ["http://localhost:3000","https://whats-app-clone-reactjs.netlify.app"],
     }
 })
 
