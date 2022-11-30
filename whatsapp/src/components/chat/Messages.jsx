@@ -54,6 +54,7 @@ export const Messages = ({ person, conversation }) => {
 
     const sendText = async (e) => {
         const code = e.keycode || e.which;
+        if(value == "") return;
         if (code == 13) {
             let msg = {}
             if (!file) {
@@ -112,6 +113,7 @@ export const Messages = ({ person, conversation }) => {
                 ))}
             </Component>
             <Footer
+            
                 sendText={sendText}
                 setValue={setValue}
                 value={value}

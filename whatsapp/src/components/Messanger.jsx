@@ -20,7 +20,7 @@ const Component = styled(Box)`
 height: 100vh;
 background-color:#111b21;
 `
-export const Messanger = () => {
+ const Messanger = () => {
     const { acc } = useContext(AccContext)
     return (
         <Component>
@@ -46,3 +46,4 @@ export const Messanger = () => {
         </Component>
     )
 }
+export default Messanger

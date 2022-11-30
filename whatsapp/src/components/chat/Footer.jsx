@@ -69,6 +69,7 @@ export const Footer = ({ sendText, setValue, value, file, setFile,setImage }) =>
 
       <Search>
         <InputField
+          
           value={value}
           placeholder='Type a message'
           onChange={(e) => setValue(e.target.value)}
