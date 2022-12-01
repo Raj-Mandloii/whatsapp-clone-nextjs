@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 
-
+import "./App.css"
 
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AccProvider } from './context/Provider';

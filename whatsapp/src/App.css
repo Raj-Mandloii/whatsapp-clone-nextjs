@@ -40,6 +40,7 @@
 /* To align vertically and horizontly center */
 .content {
   position: absolute;
+  background-color: 'transparent';
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
